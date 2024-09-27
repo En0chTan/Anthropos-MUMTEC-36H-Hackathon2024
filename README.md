@@ -27,7 +27,10 @@
 [List all the technologies, programming languages, frameworks, libraries, and tools used in the project. Include any external APIs or datasets.]
 
 - Python 3.7
-- Figma
+- Groq
+- Javascript
+- Bun.js
+- Arduino UNO
 
 
 ---
