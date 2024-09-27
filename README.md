@@ -47,6 +47,9 @@
 
 ### Features
 [Highlight the key features of your project.]
+- The optimized, plug-and-play code should be directly compatible with the Arduino IDE for seamless compilation.
+- User experience: Copy the code from the Arduino IDE, paste it into our app for optimization, then paste it back into the Arduino IDE.
+- Improve the performance of the main loop, enhancing the overall speed and efficiency.
 
 --- 
 
