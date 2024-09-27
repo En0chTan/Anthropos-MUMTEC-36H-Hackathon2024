@@ -1,7 +1,7 @@
 # Western Digital x MUMTEC-36H-Hackathon 2024-
 # Anthropos – MUMTEC Hackathon 2024 Submission
 
-## Project Title: [Insert Project Name]
+## Project Title: Optimizing Horrible Arduino Code
 
 ### Table of Contents
 1. [Project Overview](#project-overview)
@@ -18,7 +18,7 @@
 ### Project Overview
 [Provide a brief description of your project. Include the problem you are solving, your approach, and the impact of your solution.]
 
-- **Problem Statement**: [Briefly describe the problem or challenge your project addresses.]
+- **Problem Statement**: Inefficiant use of Arduino function by the hobbyist community and beginners 
 - **Proposed Solution**: [Describe your AI-powered solution, highlighting its key features and benefits.]
 
 ---
@@ -27,10 +27,8 @@
 [List all the technologies, programming languages, frameworks, libraries, and tools used in the project. Include any external APIs or datasets.]
 
 - Python 3.7
-- PyTorch
-- TensorFlow
 - Figma
-- React
+
 
 ---
 
