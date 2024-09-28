@@ -16,8 +16,8 @@
 
 ### Project Overview
 
-- **Problem Statement**: Inefficiant use of Arduino function by the hobbyist community and beginners 
-- **Proposed Solution**: An LLM (Large Language Model) will be utilized to enhance the optimization of Arduino code through a structured prompt and sequence. This approach aims to minimize errors and mistakes while preserving the readability and clarity of the code.
+- **Problem Statement**: Inefficient use of Arduino function by the hobbyist community and beginners 
+- **Proposed Solution**: An LLM (Large Language Model) will be utilized to optimize the Arduino code through a structured prompt and sequence. This approach aims to minimize errors and mistakes while preserving the readability of the code.
 
 ---
 
