@@ -34,8 +34,11 @@
 
 
 ---
-### Why pick Groq
-Groq is the most
+### Why pick Groq?
+Groq is one of the most accessible and free AI APIs currently available in the market. With its impressive processing speed and diverse range of models, we believe that Groq represents the ideal starting point for developers looking to start their AI journey.
+
+For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versatile** as both of them are optimal for their respective tasks.
+
 ---
 ### Installation and Setup
 1. **Open Terminal:**
