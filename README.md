@@ -34,7 +34,9 @@
 
 
 ---
-
+### Why pick Groq
+Groq is the most
+---
 ### Installation and Setup
 1. **Open Terminal:**
    Navigate to the desired directory where you wish to download the project.
