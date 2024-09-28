@@ -82,7 +82,11 @@ Enter any valid, working arduino code into the website and it will output an opt
 
 2. **Observe and feel free to copy the optimized code**
    
-   ![Usage3](images/usage3.jpg) 
+   ![Usage3](images/usage3.jpg)
+
+   Example:
+   Unoptimized code can refer to [WD_Hackathon.ino](./WD_Hackathon.ino)
+   Optimized version can be found [WD_Hackathon_Optimized.ino](./WD_Hackathon_Optimized.ino)
 --- 
 
 ### Features
