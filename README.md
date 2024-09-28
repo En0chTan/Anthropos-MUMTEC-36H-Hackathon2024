@@ -89,6 +89,6 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
 --- 
 
 ### Architecture
-[Provide an explanation of your system architecture.]
+![Architecture](images/arch.png)
 
 --- 
