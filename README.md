@@ -89,6 +89,13 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
 --- 
 
 ### Architecture
-![Architecture](images/arch.png)
+![Architecture](images/arch.jpg)
+
+The whole code will be provided to LLM, which then it would determine how it would optimize it from the following four: 
+
+- Comment out serial print
+- Add Direct Port Access
+- Add Periodic Task using millis()
+- Implement Fixed Point Math
 
 --- 
