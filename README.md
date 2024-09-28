@@ -54,11 +54,22 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
     ```bash
     pip install -r requirements.txt` 
     
-4.  **Launch the Application:** Start the application by executing:
+4.  **Launch the Server:** Start the server by executing:
     
 	```bash
     python backend_http.py`
 	```
+5. **download bun.js:** Enter the following:
+
+        ```bash
+    powershell -c "irm bun.sh/install.ps1|iex"
+        ```
+6. **Run the website:** cd into the "frontend" folder and enter the following:
+
+        ```bash
+    bun run serve.js
+        ```
+6. **Open the website:** go to http://localhost:3000 to view the website
 
 --- 
 
@@ -68,10 +79,12 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
 --- 
 
 ### Features
-[Highlight the key features of your project.]
+
 - The optimized, plug-and-play code should be directly compatible with the Arduino IDE for seamless compilation.
+- A simple interface, easy to use and understand
 - User experience: Copy the code from the Arduino IDE, paste it into our app for optimization, then paste it back into the Arduino IDE.
 - Improve the performance of the main loop, enhancing the overall speed and efficiency.
+
 
 --- 
 
