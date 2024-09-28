@@ -37,7 +37,7 @@ def Add_DPA_header(code):
         code = DPA_header + code
     return code
          
-def AIprompting(prompt):
+def AIprompting(prompt,token="llama-3.1-70b-versatile"):
     client = Groq(
         api_key="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",
     )
@@ -47,7 +47,7 @@ def AIprompting(prompt):
                 "role": "user", "content": prompt,
             }
         ],
-        model="llama-3.1-70b-versatile",
+        model=token,
         temperature=0
     )
 
@@ -64,20 +64,14 @@ def Read_Write_AI_Optimization(code,code_dict,PROMPT,add_3_count):
     for each in code_dict:
         prompt += "\n"
         prompt += code_dict[each]["Original"]
-    print(prompt)
-    results = AIprompting(prompt)
+    results = AIprompting(prompt,"llama3-70b-8192")
 
     start_flag = False
     count = 0
     keys = list(code_dict.keys())
     Modified_list = list()
-    print(keys)
     count_end = len(keys)
-    print(results)
-    print(">>>>>")
     for each in results.split("\n"):
-        print(repr(each))
-        print(start_flag)
         if start_flag == False:
             if "+++" in each:
                 start_flag = True
@@ -88,7 +82,6 @@ def Read_Write_AI_Optimization(code,code_dict,PROMPT,add_3_count):
                 count = count+1
                 if count == count_end:
                     break
-    print(Modified_list)
     count = 0
     key_list_index = 0
     code = code.split("\n")
@@ -96,14 +89,10 @@ def Read_Write_AI_Optimization(code,code_dict,PROMPT,add_3_count):
         for index,each in enumerate(keys):
             keys[index] = str(int(each) + 3) 
     for each in code:
-        print(str(count))
-        print(code[180])
-        print(Modified_list[1])
         if str(count) == keys[key_list_index]:
             space_count = len(each) - len(each.lstrip(' '))
             tab_count = len(each) - len(each.lstrip('\t'))
             code[count] = tab_count*'\t' + space_count*' ' + Modified_list[key_list_index]
-            print("NEW!:", code[count],"\n")
             key_list_index += 1
             if key_list_index == count_end:
                 break
