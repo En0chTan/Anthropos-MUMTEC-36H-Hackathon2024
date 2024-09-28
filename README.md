@@ -74,10 +74,13 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
 Enter any valid, working arduino code into the website and it will output an optimized code.
 
 1. **Enter code into website**
+
    ![Usage1](images/usage1.jpg)
+   
    ![Usage2](images/usage2.jpg)
 
 2. **Observe and feel free to copy the optimized code**
+   
    ![Usage3](images/usage3.jpg) 
 --- 
 
