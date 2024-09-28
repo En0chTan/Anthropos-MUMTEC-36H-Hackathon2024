@@ -39,7 +39,7 @@
             margin-top: 20px;
             padding: 10px 20px;
             border: none;
-            background-color: #e74c3c;
+            background-color: #3ce786;
             color: #ecf0f1;
             cursor: pointer;
             font-size: 16px;
@@ -47,7 +47,7 @@
         }
 
         button:hover {
-            background-color: #c0392b;
+            background-color: #c0392b !important;
         }
 
         .toggle-container {
@@ -74,69 +74,108 @@
             font-family: 'Courier New', Courier, monospace;
             display: none;
         }
+
+        #loader {
+            border: 16px solid #f3f3f3;
+            /* Light grey */
+            border-top: 16px solid #3498db;
+            /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
 <body>
-    <h1>Online Code Editor</h1>
+    <h1>AI Code Optimizer for Arduino</h1>
     <textarea id="editor" placeholder="Write your code here..."></textarea>
-    <div class="toggle-container">
-        <label>
-            <input type="checkbox" id="commentAwaySerialPrint"> Comment away serial print
-        </label>
-        <label>
-            <input type="checkbox" id="directPortAccess"> Direct port access
-        </label>
-        <label>
-            <input type="checkbox" id="periodicTask"> Periodic task
-        </label>
-        <label>
-            <input type="checkbox" id="fixedPointMath"> Fixed point math
-        </label>
-    </div>
-    <button onclick="getAICompletion()">Get AI Suggestion</button>
-    <code>
+    <button id="getOptimization" onclick="getAICompletion()">Get AI Suggestion</button>
+    
+    <div hidden="true" id="loader"></div> 
+
+    <div class="result" hidden="true" >
+        <h3>Result:</h3>
+        <div class="toggle-container">
+            <label>
+                <input disabled="true" type="checkbox" id="commentAwaySerialPrint"> Comment away serial print
+            </label>
+            <label>
+                <input disabled="true" type="checkbox" id="directPortAccess"> Direct port access*
+            </label>
+            <label>
+                <input disabled="true" type="checkbox" id="periodicTask"> Periodic task*
+            </label>
+            <label>
+                <input disabled="true" type="checkbox" id="fixedPointMath"> Fixed point math*
+            </label> <br>
+            <small>*AI Powered Optimizations</small>
+        </div>
         <pre id="output" style="display: none; color: white;"></pre>
-    </code>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         async function getAICompletion() {
             let code = document.getElementById('editor').value;
-            const commentAwaySerialPrint = document.getElementById('commentAwaySerialPrint').checked;
-            const directPortAccess = document.getElementById('directPortAccess').checked;
-            const periodicTask = document.getElementById('periodicTask').checked;
-            const fixedPointMath = document.getElementById('fixedPointMath').checked;
+            const commentAwaySerialPrint = document.getElementById('commentAwaySerialPrint');
+            const directPortAccess = document.getElementById('directPortAccess');
+            const periodicTask = document.getElementById('periodicTask');
+            const fixedPointMath = document.getElementById('fixedPointMath');
 
-            const flags = {
-                1: commentAwaySerialPrint,
-                2: directPortAccess,
-                3: periodicTask,
-                4: fixedPointMath
-            };
+            const loader = document.getElementById("loader");
+            const resultClass = document.getElementsByClassName("result")[0];
+
+            resultClass.hidden = false;
+            loader.hidden = false;
+
 
             try {
-                const button = document.querySelector('button');
-                button.disabled = true;
-                button.style.backgroundColor = '#7f8c8d';
-                button.style.cursor = 'not-allowed';
-                const response = await axios.post('http://' + window.location.hostname + ':5000/api/optimize', { code, flags }, {
+                const optimizationButton = document.querySelector('#getOptimization');
+                const copyToClipButton = document.querySelector('#copyToClip');
+                optimizationButton.disabled = true;
+                optimizationButton.style.backgroundColor = '#7f8c8d';
+                optimizationButton.style.cursor = 'not-allowed';
+                const response = await axios.post('http://' + window.location.hostname + ':5000/api/optimize', { code }, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*'
                     }
                 });
                 const optimizedCode = response.data.optimized_code.replace(/\\n/g, '\n');
+                const usedFlags = response.data.used_flags;
+
+                commentAwaySerialPrint.checked = usedFlags[0];
+                directPortAccess.checked = usedFlags[1];
+                periodicTask.checked = usedFlags[2];
+                fixedPointMath.checked = usedFlags[3];
+
                 const output = document.getElementById('output');
+
+                loader.hidden = true;
+
                 output.textContent = optimizedCode;
-                output.style.display = 'block';
+                output.style.display = 'inline-table';
                 //restore the button
-                button.disabled = false;
-                button.style.backgroundColor = '#e74c3c';
-                button.style.cursor = 'pointer';
+                optimizationButton.disabled = false;
+                optimizationButton.style.backgroundColor = '#e74c3c';
+                optimizationButton.style.cursor = 'pointer';
+
             } catch (error) {
                 console.error('Error fetching AI completion:', error);
             }
+
         }
     </script>
 
