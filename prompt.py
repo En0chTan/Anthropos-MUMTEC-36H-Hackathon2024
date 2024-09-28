@@ -4,18 +4,23 @@ class prompts:
 
     REVIEW_PROMPT = """
 You are a code reviewer for Arduino IDE
-Check the code whether it be optized by
-1. Direct Port Access if it has digitalWrite() and digitalRead() operations
-2. Periodic Task Optimization if it has delay() operations by using millis() or micros
+Check the code whether it has ...
+1. has any Serial.print() or Serial.println()
+2. can be optimized by Direct Port Access if it has digitalWrite() and digitalRead() operations
+3. can be optimized by Periodic Task Optimization if it has delay() operations by replacing it with millis() or micros(), if it has no delay() there is no need for this optimization
+There are some code that are meant to run as fast as possible, do not mark them as periodic task
+4. be optimized by replacing floating point numbers with fixed point numbers
 
-If the optimization are already in place, do not optimize again, say no in your output
-Yes, means there is still room for optimization 
-If it is not Arduno code, output no in the Arduino_Code field
+If the optimization are already in place, do not optimize again, say False in your output
+True, means there is still room for optimization 
+If it is not Arduno code, output False in the Arduino_Code field
 Output your by wrapping it in json format
-
-{"Arduino_Code" : "Yes or No"
-"DPA" : "Yes or No"
-"Periodic_Task" : "Yes or No"}
+    
+{"Arduino_Code" : "True or False"
+"optimizeSerial":"True or False"
+"optimizeDPA" : "True or False"
+"optimizePeriodicTask" : "True or False"
+"optimize_fp_math": "True or False"}
 Do not include any explanation
 """
 
@@ -109,6 +114,9 @@ float num5 = num4 + 99.9;
 fp_int_t num4 = FP_FROM_INT(10L); // Append L to literals
 fp_int_t num5 = num4 + float_to_fp(99.9)
 
+For places such as for loops, check if the operation is just normal integre math or not
+Do not use FP_FROM_INT() at the #define macros, but use them at the inline code when there is a need for conversion
+
 # Arithmetic operation
 Replace all multiplication and division * / operation with the function fp_mul() and fp_div()
 There can be no * and / in the final code
@@ -122,7 +130,7 @@ fp_num_t a = fp_div(b, c);
 fp_num_t e = fp_mul(b, c);
 
 # Literals and constants
-By default, the literals on arduino are treated as 2 bytes. So add a L (long) literal to make it 4 bytes
+By default, the literals on arduino are treated as 2 bytes. So add a use the macro FP_FROM_INT() that will automatically cast them to 4 bytes
 Add a L literal ro every constants that are involved in the fixed point calculation
 Do not append L to constants that are not related
 
@@ -136,7 +144,7 @@ For code that only run once such as those in setup() it is fine to use float as 
 For values that are calculated once but used throughout the code, such as calibration data, you may first calculate them using float, then create another variable to store the fixed point representation  
 
 # Integer values smaller than int32_t
-Typecase or redeclare integers that are smaller than 32 bits like int8_t and int16_t to int32_t.
+Redeclare integers that are smaller than 32 bits like int8_t and int16_t to int32_t.
 Cast integers that have smaller size than 32 bits to int32_t before using the FP_FROM_INT macro to convert them to Fixed point
 
 int16_t num2 = 15;
@@ -145,6 +153,7 @@ fp_int_t num3 = FP_FROM_INT((fp_int_t)num2) //Case integers smaller than 32 bits
 # Output
 Return every line of the optimized code
 Do not include explanation for the code
+Return the code with the FP macros
 
 Below is the list of variables, functions and constants that need to be modified
 Modify accordingly, do not touch ot
@@ -210,11 +219,14 @@ By default, the literals on arduino are treated as 2 bytes. So add a L (long) li
 Add a L literal ro every constants that are involved in the fixed point calculation
 Beware of integers that are smaller than 32 bits, as if not converted to 32 bit, during bit shift we will lose data
 Exclude variables, constants and functions that are not involved in the fixed point conversion from floating point
+The original Arduino functions are not modified, so the input data types remains the same       
+
+Important: Please exclude code that will work fine with the original math using integers, only optimize items that involve float
 
 
 Do the following things:
 1. List out the key functions that will contribute to the loop performance that can be optinmized by FP math
-2. List out all literals and constants that needed to append a L, do not append if they are not involved in the FP math calculation
+2. List out all literals and constants that need to use FP_FROM_INT() or append L macros for conversion to FP math, exclude constants that are not related in the fixed point math calculations.
 3. List out all integers shorter than 32 bits, that need to by typecasted or redeclared inside the fuctions that needs to be optimized
 
 Exclude:
