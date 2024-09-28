@@ -36,7 +36,24 @@
 ---
 
 ### Installation and Setup
-[Describe how to use install and setup your project. ]
+1. **Open Terminal:**
+   Navigate to the desired directory where you wish to download the project.
+
+2. **Clone the Repository:**
+   Execute the following command to clone the project repository:
+   ```bash
+   git clone https://github.com/En0chTan/Anthropos-MUMTEC-36H-Hackathon2024.git` 
+
+3.  **Install Dependencies:** Install the required packages by running:
+    
+    ```bash
+    pip install -r requirements.txt` 
+    
+4.  **Launch the Application:** Start the application by executing:
+    
+	```bash
+    python backend_http.py`
+	```
 
 --- 
 
