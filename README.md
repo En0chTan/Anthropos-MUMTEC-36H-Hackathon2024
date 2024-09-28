@@ -56,17 +56,17 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
     
 4.  **Launch the Server:** Start the server by executing:
     
-	```bash
+    ```bash
     python backend_http.py`
 	
 5. **download bun.js:** Enter the following:
 
-        ```bash
+    ```bash
     powershell -c "irm bun.sh/install.ps1|iex"
         
 6. **Run the website:** cd into the "frontend" folder and enter the following:
 
-        ```bash
+    ```bash
     bun run serve.js
 
 6. **Open the website:** go to http://localhost:3000 to view the website
