@@ -68,7 +68,7 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
 
     ```bash
     bun run serve.js
-
+    
 6. **Open the website:** go to http://localhost:3000 to view the website
 
 --- 
