@@ -23,11 +23,10 @@
 
 ### Technologies Used
 
-- Python 3.7
-- Groq
-- Javascript
-- Bun.js
-- Arduino UNO
+- Python 3.7 (Backend)
+- Groq 
+- JavaScript: Bun.js (FrontEnd)
+- Arduino IDE
 
 
 ---
@@ -56,7 +55,7 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
     ```bash
     python backend_http.py`
 	
-5. **download bun.js:** Enter the following:
+5. **download [bun.js](https://bun.sh/docs/installation):** Enter the following:
 
     ```bash
     (for windows)
