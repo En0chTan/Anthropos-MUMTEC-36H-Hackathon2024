@@ -1,4 +1,4 @@
-# Western Digital x MUMTEC-36H-Hackathon 2024-
+# Western Digital x MUMTEC-36H-Hackathon 2024
 # Anthropos – MUMTEC Hackathon 2024 Submission
 
 ## Project Title: Optimizing Horrible Arduino Code
