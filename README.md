@@ -11,20 +11,17 @@
 5. [Features](#features)
 6. [Architecture](#architecture)
 
-(feel free to add any content or sections)
 
 ---
 
 ### Project Overview
-[Provide a brief description of your project. Include the problem you are solving, your approach, and the impact of your solution.]
 
 - **Problem Statement**: Inefficiant use of Arduino function by the hobbyist community and beginners 
-- **Proposed Solution**: [Describe your AI-powered solution, highlighting its key features and benefits.]
+- **Proposed Solution**: An LLM (Large Language Model) will be utilized to enhance the optimization of Arduino code through a structured prompt and sequence. This approach aims to minimize errors and mistakes while preserving the readability and clarity of the code.
 
 ---
 
 ### Technologies Used
-[List all the technologies, programming languages, frameworks, libraries, and tools used in the project. Include any external APIs or datasets.]
 
 - Python 3.7
 - Groq
@@ -74,7 +71,7 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
 --- 
 
 ### Usage
-[Describe how to use your application. Include example commands, expected inputs, and outputs.]
+Enter any valid, working arduino code into the website and it will output an optimized code.
 
 --- 
 
