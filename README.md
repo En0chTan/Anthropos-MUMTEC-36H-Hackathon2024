@@ -59,6 +59,7 @@ For the models, we selected both **llama3-70b-8192** and **llama-3.1-70b-versati
 5. **download bun.js:** Enter the following:
 
     ```bash
+    (for windows)
     powershell -c "irm bun.sh/install.ps1|iex"
         
 6. **Run the website:** cd into the "frontend" folder and enter the following:
